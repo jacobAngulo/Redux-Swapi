@@ -1,4 +1,4 @@
-import { IS_FETCHING } from "../actions";
+import { IS_FETCHING, REQUEST_SUCCESS, REQUEST_ERROR } from "../actions";
 const initialState = {
   characters: [],
   fetching: false,

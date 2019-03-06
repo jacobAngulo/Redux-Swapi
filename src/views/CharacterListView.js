@@ -3,13 +3,11 @@ import { connect } from "react-redux";
 
 import { CharacterList } from "../components";
 // import actions
+import { requestData } from "../actions";
 
 class CharacterListView extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
+    this.props.requestData();
     // call our action
   }
 
@@ -21,12 +19,13 @@ class CharacterListView extends React.Component {
         </div>
       );
       // return something here to indicate that you are fetching data
+    } else {
+      return (
+        <div className="CharactersList_wrapper">
+          <CharacterList characters={this.props.characters} />
+        </div>
+      );
     }
-    return (
-      <div className="CharactersList_wrapper">
-        <CharacterList characters={this.props.characters} />
-      </div>
-    );
   }
 }
 
@@ -43,6 +42,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps /* mapStateToProps replaces null here */,
   {
+    requestData
     /* action creators go here */
   }
 )(CharacterListView);
